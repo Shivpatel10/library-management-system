@@ -21,6 +21,39 @@ class Book {
 }
 
 
+// Task 2: Create a Section Class
+class Section {
+    constructor(sectionName, books) {
+        this.sectionName = sectionName; //string
+        this.books = []; //array of books
+    }
+        //addBook
+        addBook(book) {
+            this.books.push(book) ////this statement to adds a book to the books array created in the section class
+        };
+        //getAvailableBooks
+        getAvailableBooks() {
+            const booksAvailable = this.books.filter(book => book.isAvailable); //using the arrow function to filter the books
+            return booksAvailable.length; // this will take the above filter then return the length
+        };
+        //listBooks
+        listBooks() {
+            console.log("Availability: true means Available, if false its not.") 
+            this.books.forEach(book => {
+                console.log(`${book.title}: Availablity: ${book.isAvailable}`)
+            });
+            
+        };
+        
+}
+
+
+
+
+
+
+
+
 // Create sections
     //const fiction = new Section("Fiction");
     //const science = new Section("Science"); 
