@@ -38,13 +38,32 @@ class Section {
         };
         //listBooks
         listBooks() {
-            console.log("Availability: true means Available, if false its not.") 
+            console.log("Availability = true means Available, if false its not.") 
             this.books.forEach(book => {
-                console.log(`${book.title}: Availablity: ${book.isAvailable}`)
+                console.log(`${book.title}: Availablity = ${book.isAvailable}`) // will go through each book and list the title and availability
             });
-            
         };
-        
+}
+
+
+// Task 3: Create a Patron Class
+class Patron {
+    constructor(patronName, borrowedBooks) {
+        this.patronName = patronName; //string
+        this.borrowedBooks = []; //array of book objects to store borrowed books
+    };
+        // borrowBook
+        borrowBook(book) {
+            if (book.isAvailable) {
+                this.borrowedBooks.push(book); // pushes book into the borrowedBooks Array
+                book.isAvailable = false; // this would then update the books status to false 
+                    console.log(`${this.patronName} is currently borrowing ${book.title}.`); // would output if the book push goes through
+            };
+        //returnBook
+        //returnBook(book) {
+    
+           // };
+        }
 }
 
 
@@ -54,19 +73,20 @@ class Section {
 
 
 
+
 // Create sections
-    //const fiction = new Section("Fiction");
-    //const science = new Section("Science"); 
+    const fiction = new Section("Fiction");
+    const science = new Section("Science"); 
 
 // Create books
-    //const book1 = new Book("1984", "George Orwell", "1234567890");
-    //const book2 = new Book("Brave New World", "Aldous Huxley", "0987654321");
-    //const book3 = new Book("The Selfish Gene", "Richard Dawkins", "1122334455");
+    const book1 = new Book("1984", "George Orwell", "1234567890");
+    const book2 = new Book("Brave New World", "Aldous Huxley", "0987654321");
+    const book3 = new Book("The Selfish Gene", "Richard Dawkins", "1122334455");
 
 // Add books to sections
-    //fiction.addBook(book1);
-    //fiction.addBook(book2);
-    //science.addBook(book3);
+    fiction.addBook(book1);
+    fiction.addBook(book2);
+    science.addBook(book3);
 
 // Create patrons
     //const regularPatron = new Patron("John Doe");
@@ -82,8 +102,8 @@ class Section {
     //regularPatron.returnBook(book1);
 
 // List books and availability
-    //fiction.listBooks();
+    fiction.listBooks();
 
 // Calculate total available books in each section
-    //console.log(`Total available books in Fiction: ${fiction.getAvailableBooks()}`);
-    //console.log(`Total available books in Science: ${science.getAvailableBooks()}`);
+    console.log(`Total available books in Fiction: ${fiction.getAvailableBooks()}`);
+    console.log(`Total available books in Science: ${science.getAvailableBooks()}`);
