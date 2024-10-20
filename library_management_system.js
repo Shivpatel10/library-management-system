@@ -4,7 +4,7 @@ class Book {
         this.title = title; //string
         this.author = author; //string
         this.ISBN = ISBN; //string
-        this._isAvailable = _isAvailable; //boolean (true/false)
+        this._isAvailable = true; //boolean (true/false)
     }
         // getter for isAvailable
         get isAvailable() {
@@ -40,9 +40,9 @@ class Section {
         listBooks() {
             console.log("Availability = true means Available, if false its not.") 
             this.books.forEach(book => {
-                console.log(`${book.title}: Availablity = ${book.isAvailable}`) // will go through each book and list the title and availability
-            });
+                console.log(`    ${book.title}: Availablity = ${book.isAvailable}`)}) // will go through each book and list the title and availability 
         };
+
 }
 
 
@@ -54,9 +54,9 @@ class Patron {
     };
         // borrowBook
         borrowBook(book) {
-            if (book.isAvailable) {
+            if (book.isAvailable) { 
                 this.borrowedBooks.push(book); // pushes book into the borrowedBooks Array
-                book.isAvailable = false; // this would then update the books status to false 
+                book.isAvailable = false; // this would then update the books status to false
                     console.log(`${this.patronName} is currently borrowing ${book.title}.`); // would output if the book push goes through
             };
         //returnBook
@@ -67,7 +67,20 @@ class Patron {
 }
 
 
-
+// Task 4: Create a VIPPatron Class
+class VIPPatron extends Patron {
+    constructor(patronName, priority = true) {
+            super(patronName);
+            this.priority = priority; //boolean
+    };
+    borrowBook(book) {
+        if (this.priority || book.isAvailable) {
+            this.borrowedBooks.push(book); // pushes book into the borrowedBooks Array
+                book.isAvailable = false; // this would then update the books status to false
+                    console.log(`${this.patronName} has VIP status and is currently borrowing ${book.title}.`); // would output if the book push goes through
+        };
+    } 
+}
 
 
 
@@ -89,14 +102,14 @@ class Patron {
     science.addBook(book3);
 
 // Create patrons
-    //const regularPatron = new Patron("John Doe");
-    //const vipPatron = new VIPPatron("Jane Smith", true);
+    const regularPatron = new Patron("John Doe");
+    const vipPatron = new VIPPatron("Jane Smith", true);
 
 // Regular patron tries to borrow a book
-    //regularPatron.borrowBook(book1);
+    regularPatron.borrowBook(book1);
 
 // VIP patron tries to borrow a book (has priority)
-    //vipPatron.borrowBook(book1);
+    vipPatron.borrowBook(book1);
 
 // Return the book
     //regularPatron.returnBook(book1);
